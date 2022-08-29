@@ -2,34 +2,34 @@
 #include "directions.h"
 
 // Vertical servo pins
-# define V1 6
-# define V2 7
-# define V3 8
-# define V4 9
+# define V1 2
+# define V2 3
+# define V3 4
+# define V4 5
 
 // Horizontal servo pins
-# define H1 2
-# define H2 3
-# define H3 4
-# define H4 5
+# define H1 6
+# define H2 7
+# define H3 8
+# define H4 9
 
-
-# define DRIVE 1600
-# define REVERSE 1400
 # define IDLE_SPEED 1500
 
 int dir;
-int speed_input =0 ;
+int speed_input = 0 ;
 
 Servo servoArray[8];
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  
+
+  // Attaching all servos to respective pins
   int servoPinArray[] = {V1, V2, V3, V4, H1, H2, H3, H4};
   for (int i = 0; i < 8; i++){
     servoArray[i].attach(servoPinArray[i]);
   }
+
+  // Stopping all servos just in case
   stop_servos(servoArray, IDLE_SPEED);
   
 }
@@ -57,7 +57,8 @@ void loop() {
   }
 
   dir = Serial.read();
-  
+
+  // Switch case based on ASCII value of key entered
   switch(dir) {
     case(119): // w key
       forward(servoArray, speed_input, IDLE_SPEED);

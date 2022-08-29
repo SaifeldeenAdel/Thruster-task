@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-
+// Function prototypes
 void forward(Servo myServos[],  int speed_input, int idle_speed);
 void backward(Servo myServos[],  int speed_input, int idle_speed);
 void right(Servo myServos[],  int speed_input, int idle_speed);
